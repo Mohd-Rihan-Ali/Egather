@@ -1,5 +1,4 @@
 import './App.css';
-import Navbar from './components/Navbar';
 import {
   BrowserRouter,
   Routes,
@@ -9,19 +8,26 @@ import Home from './components/Home';
 import About from './components/About';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Join from './components/Join';
+import WithNav from './components/WithNav';
+import WithoutNav from './components/WithoutNav';
+import MeetingRoom from './components/MeetingRoom';
 function App() {
   return (
-    <div className="App">
+    <div className="App backg-black">
      <BrowserRouter>
-      <Navbar/>
-    <div className="container">
       <Routes>
+        <Route element={<WithNav/>}>
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About />}/>
-        <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
+        <Route path="/join" element={<Join/>}/>
+        <Route path="/login" element={<Login/>}/>
+        </Route>
+        <Route element={<WithoutNav/>}>
+        <Route path="/meet" element={<MeetingRoom/>}/>         
+        </Route>
       </Routes>
-    </div>
     </BrowserRouter>
     </div>
   );

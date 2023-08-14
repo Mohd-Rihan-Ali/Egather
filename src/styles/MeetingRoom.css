@@ -1,0 +1,28 @@
+.Room{
+    min-height: 100vh;
+    display: flex;
+}
+.Streams{
+    display:flex;
+    flex-direction: column;
+    width: 75%;
+}
+/* .userStreams{
+    display: flex;
+    flex-wrap: wrap;
+    height: 15%;
+    border: 2px solid orange;
+} */
+.mainStream{
+    border: 2px solid orange;
+    height: 75%;
+}
+.options{
+    height: 10%;
+    border: 2px solid green;
+}
+.chatbox{
+    width: 25%;
+    background-color: wheat;
+    border: 2px solid red;
+}

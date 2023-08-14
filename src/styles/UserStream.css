@@ -1,0 +1,6 @@
+.userStreams {
+    display: flex;
+    flex-wrap: wrap;
+    height: 15%;
+    border: 2px solid orange;
+}
