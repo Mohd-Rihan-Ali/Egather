@@ -1,5 +1,5 @@
 .Room{
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
 }
 .Streams{
@@ -7,18 +7,19 @@
     flex-direction: column;
     width: 75%;
 }
-/* .userStreams{
-    display: flex;
-    flex-wrap: wrap;
-    height: 15%;
+.userStreams{
+    height: 14%;
     border: 2px solid orange;
-} */
+    padding-left: 35px;
+    margin-bottom: 4px;
+    margin-top: 8px;
+}
 .mainStream{
     border: 2px solid orange;
-    height: 75%;
+    height: 73%;
 }
 .options{
-    height: 10%;
+    height: 8%;
     border: 2px solid green;
 }
 .chatbox{
