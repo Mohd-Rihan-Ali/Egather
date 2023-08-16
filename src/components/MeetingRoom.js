@@ -18,8 +18,9 @@ const MeetingRoom = () => {
              <MainStream/>
           </div>
           <div className="options">
-            <button className='btn btn-primary'>call</button>
-            <button className='btn btn-primary'>text</button>
+          <i class="fa-solid fa-microphone fa-2xl mx-2" style={{'color': '#ffffff'}}></i>
+          <i class="fa-solid fa-video fa-2xl mx-2" style={{'color': '#ffffff'}}></i>
+            <button className='btn btn-danger mx-2'>Leave Meet</button>
           </div>
       </div>
       <div className="chatbox">

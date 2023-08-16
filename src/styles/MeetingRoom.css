@@ -21,9 +21,13 @@
 .options{
     height: 8%;
     border: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .chatbox{
     width: 25%;
     background-color: wheat;
-    border: 2px solid red;
+    border: 2px solid red;/*removing this border will cause div overflow*/
+    padding: 2px 2px;
 }

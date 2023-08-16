@@ -45,8 +45,7 @@ const UserStreamContainer = () => {
                 <UserVideo/>
                 <UserVideo/>
                 <UserVideo/>
-                <UserVideo/>
-                <UserVideo/>
+            
             </Slider>
         </div>
     );

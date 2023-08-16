@@ -2,7 +2,7 @@
     width: 100%; /* Set a specific width for the container */
     height: 150px; /* Set a specific height for the container */
     overflow: hidden; /* Ensure content that exceeds the container's dimensions is hidden */
-    border: 2px solid rgb(12, 231, 27);
+    /* border: 2px solid rgb(12, 231, 27); */
 }
 .slick-list {
     width: 100%; /* Ensure the slider list takes full width of the container */
@@ -18,7 +18,7 @@
     transform: translateY(-50%); /* Center the buttons vertically */
     cursor: pointer; /* Add cursor style */
     background-color: rgba(57, 49, 49, 0.8); /* Adjust the background color */
-    border: 1px solid #ccc; /* Add border */
+    /* border: 1px solid #ccc;  */
      border-radius: 50%; /*Make the buttons circular */
 }
 

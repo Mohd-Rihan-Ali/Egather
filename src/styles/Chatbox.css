@@ -1,0 +1,31 @@
+.main-div{
+    border: 2px solid red;
+    display:flex;
+    flex-direction: column;
+    background-color: grey;
+    height: 100%;
+    border-radius: 8px;
+    position: relative;
+}
+.send-message{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    left:5px;
+    display: flex;
+}
+.message-input{
+    width:85%;
+    border-radius: 4px;
+}
+.send-button{
+    border: 2px solid red;
+    height: 100%;
+    width: 10%;
+    top: 0;
+    right: 7px;
+    position: absolute;
+    /* background-color: orangered; */
+    display: inline-block;
+    cursor: pointer;
+}
