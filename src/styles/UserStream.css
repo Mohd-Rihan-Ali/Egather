@@ -23,11 +23,11 @@
 }
 
 .slick-prev {
-    left: -28px; /* Position the previous button to the left */
+    left: -39px; /* Position the previous button to the left */
 }
 
 .slick-next {
-    right: 5px; /* Position the next button to the right */
+    right: -23px; /* Position the next button to the right */
 }
 .slick-dots{
     bottom: -17px;

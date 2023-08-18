@@ -5,10 +5,10 @@ const Chatbox = () => {
     <div className='main-div'>
           <div className="chat"></div>
           <form className='send-message'>
-                 <input className="message-input" type="text" />
-                 <div className="send-button">
-                 <i class="fa-solid fa-paper-plane fa-xl"></i>
-                 </div>
+                 <input className="message-input" type="text" placeholder='Message'/>
+                 <span className='iconspan'>
+                  <span className="icon"></span>
+                 </span>
           </form>
     </div>
   )

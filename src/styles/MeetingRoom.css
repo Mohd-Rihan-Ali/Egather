@@ -10,7 +10,8 @@
 .userStreams{
     height: 14%;
     border: 2px solid orange;
-    padding-left: 35px;
+    padding-left: 50px;
+    padding-right: 31px;
     margin-bottom: 4px;
     margin-top: 8px;
 }
