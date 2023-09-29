@@ -12,9 +12,11 @@ import Join from './components/Join';
 import WithNav from './components/WithNav';
 import WithoutNav from './components/WithoutNav';
 import MeetingRoom from './components/MeetingRoom';
+import AgoraState from './context/agoraContext/AgoraState';
 function App() {
   return (
     <div className="App backg-black">
+      <AgoraState>
      <BrowserRouter>
       <Routes>
         <Route element={<WithNav/>}>
@@ -29,6 +31,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+      </AgoraState>
     </div>
   );
 }
