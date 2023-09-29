@@ -12,10 +12,12 @@ import Join from './components/Join';
 import WithNav from './components/WithNav';
 import WithoutNav from './components/WithoutNav';
 import MeetingRoom from './components/MeetingRoom';
+import { SocketProvider } from './context/SocketProvider';
 function App() {
   return (
     <div className="App backg-black">
      <BrowserRouter>
+     <SocketProvider>
       <Routes>
         <Route element={<WithNav/>}>
         <Route path="/" element={<Home/>}/>
@@ -25,9 +27,10 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         </Route>
         <Route element={<WithoutNav/>}>
-        <Route path="/meet" element={<MeetingRoom/>}/>         
+        <Route path="/meet/:roomId" element={<MeetingRoom/>}/>         
         </Route>
       </Routes>
+     </SocketProvider>
     </BrowserRouter>
     </div>
   );

@@ -1,18 +1,26 @@
-import React from 'react'
+import React, {useCallback, useEffect} from 'react'
 import '../styles/MeetingRoom.css'
 import MainStream from './MainStream';
 import UserStream from './UserStream';
 import Chatbox from './Chatbox';
+import { useSocket } from '../context/SocketProvider';
+
 const MeetingRoom = () => {
+  const socket = useSocket();
+  const handleUserJoined = useCallback(({email, id})=>{
+       console.log(`${email} joined`);
+  }, []);
+
+  useEffect(()=>{
+      socket.on('user:joined', handleUserJoined);
+      return ()=>{
+        socket.off('user:joined', handleUserJoined);
+      }
+  }, [socket, handleUserJoined]);
+
   return (
     <div className='Room'>
       <div className="Streams">
-          {/* <div className="userStreams">
-          <UserStream/>
-          <UserStream/>
-          <UserStream/>
-          <UserStream/>
-          </div> */}
           <UserStream/>
           <div className="mainStream">
              <MainStream/>
