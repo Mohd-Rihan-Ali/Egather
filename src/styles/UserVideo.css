@@ -1,7 +1,7 @@
 .userVideo{
     background-color: white;
-    border: 2px solid red;
-    border-radius: 4px;
+    /* border: 2px solid red; */
+    border-radius: 10px;
     width: 250px;
     height: 100%;
 }

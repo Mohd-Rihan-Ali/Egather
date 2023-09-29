@@ -1,6 +1,40 @@
 .userStreams {
-    display: flex;
-    flex-wrap: wrap;
-    height: 15%;
-    border: 2px solid orange;
+    width: 100%; /* Set a specific width for the container */
+    height: 150px; /* Set a specific height for the container */
+    overflow: hidden; /* Ensure content that exceeds the container's dimensions is hidden */
+    /* border: 2px solid rgb(12, 231, 27); */
+}
+.slick-list {
+    width: 100%; /* Ensure the slider list takes full width of the container */
+
+}
+.slick-prev,
+.slick-next {
+   /* Adjust the font size */
+    /* Adjust the line height */
+    z-index: 1; /* Ensure the buttons are above the slider content */
+    position: absolute; /* Position the buttons */
+    top: 50%; /* Position the buttons vertically in the middle */
+    transform: translateY(-50%); /* Center the buttons vertically */
+    cursor: pointer; /* Add cursor style */
+    background-color: rgba(57, 49, 49, 0.8); /* Adjust the background color */
+    /* border: 1px solid #ccc;  */
+     border-radius: 50%; /*Make the buttons circular */
+}
+
+.slick-prev {
+    left: -39px; /* Position the previous button to the left */
+}
+
+.slick-next {
+    right: -23px; /* Position the next button to the right */
+}
+.slick-dots{
+    bottom: -17px;
+}
+.slick-dots li button:before{
+    color:white;
+}
+.slick-dots li.slick-active button:before {
+    color:#ffffff;
 }

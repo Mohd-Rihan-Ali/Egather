@@ -27,7 +27,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         </Route>
         <Route element={<WithoutNav/>}>
-        <Route path="/meet" element={<MeetingRoom/>}/>         
+        <Route path="/meet/:roomId" element={<MeetingRoom/>}/>         
         </Route>
       </Routes>
     </BrowserRouter>
