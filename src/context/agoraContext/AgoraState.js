@@ -8,8 +8,9 @@ const AgoraState = (props)=>{
     const config = {mode:'rtc', codec:'vp8', appId: APP_ID, token:token};
     const useClient = createClient(config);
     const useMicrophoneAndCameraTracks = createMicrophoneAndCameraTracks();
+    const channelName = "main";
     return (
-        <AgoraContext.Provider value={{ config, useClient, useMicrophoneAndCameraTracks}}>
+        <AgoraContext.Provider value={{ config, useClient, useMicrophoneAndCameraTracks, channelName}}>
           {props.children}
         </AgoraContext.Provider>
       )

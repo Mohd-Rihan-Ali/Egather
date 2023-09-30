@@ -1,30 +1,19 @@
-import React, { useState, useEffect, useCallback} from 'react'
-import { useSocket } from '../context/SocketProvider';
+import React, { useState, useCallback} from 'react'
 import { useNavigate } from 'react-router-dom';
 
-function Join() {
+function Join(props) {
   let [email, setEmail] = useState('');
   let [room, setRoom] = useState('');
+  const {setInCall} = props;
   const navigate = useNavigate();
-  const socket = useSocket();
 
   const handleSubmit = useCallback((e)=>{
     e.preventDefault();
-    socket.emit('room:join', {email, room})
-}, [email, room , socket]);
+    setInCall(true);
+    navigate("/meet/1")
+}, [email, room]);
 
-  const handleJoinRoom = useCallback((data)=>{
-    const {email, room} = data;
-    navigate(`/meet/${room}`)
-}, [navigate]);
 
-  useEffect(()=>{
-       socket.on('room:join',handleJoinRoom);
-       return ()=>{
-        socket.off('room:join', handleJoinRoom);
-       }
-  }, [socket, handleJoinRoom]);
-  
   return (
     <div className='container my-3 bg-dark text-light'>
       <form onSubmit={handleSubmit}>

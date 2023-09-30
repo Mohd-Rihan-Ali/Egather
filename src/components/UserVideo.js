@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { AgoraVideoPlayer } from 'agora-rtc-react';
 import '../styles/UserVideo.css';
-const UserVideo = () => {
+const UserVideo = (props) => {
+  const {track} = props;
   return (
-    <video className="userVideo"></video>
+      <AgoraVideoPlayer videoTrack={track} style={{height: '130px', width: '250px'}}></AgoraVideoPlayer>
   )
 }
 

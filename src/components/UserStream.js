@@ -7,8 +7,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import '../styles/UserStream.css'; // Your custom CSS for styling
 import UserVideo from './UserVideo';
 
-const UserStreamContainer = () => {
+const UserStreamContainer = (props) => {
+    const {users, tracks} = props;
     const settings = {
+        infinite:false,
         dots: true,
         slidesToShow: 4,
         slidesToScroll: 1,
@@ -40,12 +42,15 @@ const UserStreamContainer = () => {
     return (
         <div className="userStreams">
             <Slider {...settings}>
-                <UserVideo/>
-                <UserVideo/>
-                <UserVideo/>
-                <UserVideo/>
-                <UserVideo/>
-            
+                <UserVideo track={tracks[1]}/>
+                {
+                    users.length>0 && users.map((user) => {
+                        if(user.videoTrack){
+                            return <UserVideo key={user.uid} track={user.videoTrack}/>
+                        }
+                        else return null;
+                    })
+                }
             </Slider>
         </div>
     );

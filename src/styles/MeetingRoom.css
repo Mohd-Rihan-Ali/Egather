@@ -28,7 +28,7 @@
 }
 .chatbox{
     width: 25%;
-    background-color: rgb(0, 0, 0);
+    background-color: wheat;
     border: 2px solid red;/*removing this border will cause div overflow*/
     padding: 2px 2px;
 }
