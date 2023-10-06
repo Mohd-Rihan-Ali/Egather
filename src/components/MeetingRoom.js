@@ -4,6 +4,7 @@ import MainStream from './MainStream';
 import UserStream from './UserStream';
 import Chatbox from './Chatbox';
 import AgoraContext from '../context/agoraContext/agoraContext';
+import MainStreamContext from '../context/mainStreamContext/mainStreamContext';
 import Controls from './Controls';
 
 const MeetingRoom = (props) => {
@@ -14,6 +15,8 @@ const MeetingRoom = (props) => {
    const {config, useClient, useMicrophoneAndCameraTracks, channelName} = context;
    const client = useClient();
    const {ready, tracks} = useMicrophoneAndCameraTracks();
+   const mainStreamcontext = useContext(MainStreamContext);
+   const {streamReady} = mainStreamcontext;
 
    useEffect(()=>{
        let init = async (name)=>{
@@ -71,7 +74,7 @@ const MeetingRoom = (props) => {
       <div className="Streams">
          {start && tracks &&  <UserStream users={users} tracks={tracks}/>}
           <div className="mainStream">
-             <MainStream/>
+            {streamReady &&  <MainStream/>}
           </div>
           <div className="options">
              {ready && tracks && (<Controls tracks={tracks} setStart={setStart} setInCall={setInCall}/>)}

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Slider from 'react-slick'; // You need to install the 'react-slick' package
+import MainStreamContext from '../context/mainStreamContext/mainStreamContext';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -7,8 +8,16 @@ import 'slick-carousel/slick/slick-theme.css';
 import '../styles/UserStream.css'; // Your custom CSS for styling
 import UserVideo from './UserVideo';
 
+
+
 const UserStreamContainer = (props) => {
     const {users, tracks} = props;
+    const mainStreamcontext = useContext(MainStreamContext);
+const {mainStream, setMainStream, setStreamReady} = mainStreamcontext;
+   useEffect(()=>{
+    setMainStream(tracks[1]);
+    setStreamReady(true);
+   },[])
     const settings = {
         infinite:false,
         dots: true,
@@ -42,10 +51,10 @@ const UserStreamContainer = (props) => {
     return (
         <div className="userStreams">
             <Slider {...settings}>
-                <UserVideo track={tracks[1]}/>
+                {(mainStream != tracks[1]) && <UserVideo track={tracks[1]}/>}
                 {
                     users.length>0 && users.map((user) => {
-                        if(user.videoTrack){
+                        if(user.videoTrack && (mainStream != user.videoTrack)){
                             return <UserVideo key={user.uid} track={user.videoTrack}/>
                         }
                         else return null;

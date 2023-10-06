@@ -14,11 +14,13 @@ import WithNav from './components/WithNav';
 import WithoutNav from './components/WithoutNav';
 import MeetingRoom from './components/MeetingRoom';
 import AgoraState from './context/agoraContext/AgoraState';
+import MainStreamState from './context/mainStreamContext/MainStreamState';
 function App() {
   const [inCall, setInCall] = useState(false);
   return (
     <div className="App backg-black">
       <AgoraState>
+        <MainStreamState>
      <BrowserRouter>
       <Routes>
         <Route element={<WithNav/>}>
@@ -33,6 +35,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+        </MainStreamState>
       </AgoraState>
     </div>
   );
