@@ -7,29 +7,30 @@ const Controls = (props) => {
   const context = useContext(AgoraContext);
   const {useClient} = context;
   const client = useClient();
-  const {tracks, setStart, setInCall} = props;
+  const {localTracks, setStart, setInCall} = props;
   const [trackState, setTrackState] = useState({video:true, audio:true});
 
   const mute = async(type)=>{
       if(type==="audio"){
-        await tracks[0].setEnabled(!trackState.audio);
+        await localTracks[0].setEnabled(!trackState.audio);
         setTrackState((ps)=>{
           return {...ps, audio:!ps.audio};
-        })
+        });
       }
       else if(type==="video"){
-        await tracks[1].setEnabled(!trackState.video);
+        await localTracks[1].setEnabled(!trackState.video);
+        console.log("iamclosign my video", localTracks[1], client.uid)
         setTrackState((ps)=>{
           return {...ps, video:!ps.video};
-        })
+        });
       }
   }
 
   const leaveChannel = async ()=>{
     await client.leave();
     client.removeAllListeners();
-    tracks[0].close();
-    tracks[1].close();
+   if(trackState.audio) localTracks[0].close();
+   if(trackState.video) localTracks[1].close();
     setStart(false);
     setInCall(false);
   }
