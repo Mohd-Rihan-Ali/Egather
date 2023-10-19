@@ -13,30 +13,31 @@ import Join from './components/Join';
 import WithNav from './components/WithNav';
 import WithoutNav from './components/WithoutNav';
 import MeetingRoom from './components/MeetingRoom';
-import AgoraState from './context/agoraContext/AgoraState';
+import RoomState from './context/roomContext/RoomState';
 import MainStreamState from './context/mainStreamContext/MainStreamState';
+import CreateNewMeeting from './components/CreateNewMeeting';
 function App() {
-  const [inCall, setInCall] = useState(false);
   return (
     <div className="App backg-black">
-      <AgoraState>
         <MainStreamState>
      <BrowserRouter>
+     <RoomState>
       <Routes>
         <Route element={<WithNav/>}>
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About />}/>
         <Route path="/signup" element={<Signup/>}/>
-        <Route path="/join" element={<Join setInCall={setInCall}/>}/>
+        <Route path="/join" element={<Join/>}/>
+        <Route path="/createRoom" element={<CreateNewMeeting/>}/>
         <Route path="/login" element={<Login/>}/>
         </Route>
         <Route element={<WithoutNav/>}>
-        <Route path="/meet/:roomId" element={<MeetingRoom setInCall={setInCall}/>}/>         
+        <Route path="/meet/:roomId" element={<MeetingRoom/>}/>         
         </Route>
       </Routes>
+      </RoomState>
     </BrowserRouter>
         </MainStreamState>
-      </AgoraState>
     </div>
   );
 }

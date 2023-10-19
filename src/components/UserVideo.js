@@ -1,18 +1,19 @@
-import React, { useContext } from 'react';
-import { AgoraVideoPlayer } from 'agora-rtc-react';
+import React, { useContext, useEffect, useRef } from 'react';
 import MainStreamContext from '../context/mainStreamContext/mainStreamContext';
 import '../styles/UserVideo.css';
 const UserVideo = (props) => {
   const mainStreamcontext = useContext(MainStreamContext);
   const {setMainStream} = mainStreamcontext;
-  const {track} = props;
+  const {stream} = props;
+  const videoRef = useRef(null);
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.srcObject = stream;
+  }, [stream]);
   let handleClick = (track1)=>{
          setMainStream(track1);
   }
   return (
-    <div className='userVideo' onClick={()=>handleClick(track)}>
-      <AgoraVideoPlayer videoTrack={track} style={{height: '100%', width: '250px'}}></AgoraVideoPlayer>
-    </div>
+      <video className='userVideo' ref={videoRef} autoPlay muted onClick={()=>handleClick(stream)}/>
   )
 }
 

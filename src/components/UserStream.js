@@ -11,11 +11,11 @@ import UserVideo from './UserVideo';
 
 
 const UserStreamContainer = (props) => {
-    const {users, localTracks} = props;
+    const {peers, stream} = props;
     const mainStreamcontext = useContext(MainStreamContext);
 const {mainStream, setMainStream, setStreamReady} = mainStreamcontext;
    useEffect(()=>{
-    setMainStream(localTracks[1]);
+    setMainStream(stream);
     setStreamReady(true);
    },[])
     const settings = {
@@ -51,12 +51,11 @@ const {mainStream, setMainStream, setStreamReady} = mainStreamcontext;
     return (
         <div className="userStreams">
             <Slider {...settings}>
-                {(mainStream != localTracks[1]) && <UserVideo track={localTracks[1]}/>}
+                {(mainStream != stream) && <UserVideo stream={stream}/>}
                 {
-                    users.length>0 && users.map((user) => {
-                        if(user.videoTrack && mainStream !== user.videoTrack){
-                            console.log(user.uid, user.videoTrack);
-                            return <UserVideo key={user.uid} track={user.videoTrack}/>
+                   Object.values(peers).map((peer) => {
+                        if(mainStream !== peer.stream){
+                            return <UserVideo key={peer.peerId} stream={peer.stream}/>
                         }
                         else return null
                     })

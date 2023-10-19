@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { AgoraVideoPlayer } from 'agora-rtc-react';
+import React, { useContext, useEffect, useRef } from 'react';
 import '../styles/MainStream.css';
 import MainStreamContext from '../context/mainStreamContext/mainStreamContext';
 
@@ -7,10 +6,13 @@ const MainStream = () => {
   const mainStreamcontext = useContext(MainStreamContext);
   const {mainStream} = mainStreamcontext;
   console.log(mainStream);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.srcObject = mainStream;
+  }, [mainStream]);
   return (
-           <div className="mainVideo">
-      <AgoraVideoPlayer videoTrack={mainStream} style={{height: '100%', width: '100%'}}></AgoraVideoPlayer>
-    </div>
+            <video  className="mainVideo" ref={videoRef} autoPlay muted />
   )
 }
 

@@ -3,32 +3,29 @@ import '../styles/MeetingRoom.css'
 import MainStream from './MainStream';
 import UserStream from './UserStream';
 import Chatbox from './Chatbox';
-import AgoraContext from '../context/agoraContext/agoraContext';
-import MainStreamContext from '../context/mainStreamContext/mainStreamContext';
+import RoomContext from '../context/roomContext/roomContext';
 import Controls from './Controls';
+import { useParams } from 'react-router-dom';
 
 const MeetingRoom = (props) => {
-   const {setInCall} = props;
-   const [users, setUsers] = useState([]);
-   const [start, setStart] = useState(false);
-   const context = useContext(AgoraContext);
-   const {joinRoomInit,joinStream, localTracks, ready} = context;
-   const mainStreamcontext = useContext(MainStreamContext);
-   const {streamReady} = mainStreamcontext;
+  const { roomId } = useParams();
+  const { ws, me, stream, peers } = useContext(RoomContext);
 
-   useEffect(()=>{
-        joinRoomInit();
-        joinStream();
-   }, [joinRoomInit, joinStream]);
+  useEffect(() => {
+    if (me){
+      console.log("i emitting join-room", roomId)
+      ws.emit("join-room", { roomId: roomId, peerId: me._id });
+    }
+  }, [roomId, me, ws]);
   return (
     <div className='Room'>
       <div className="Streams">
-         {start && localTracks &&  <UserStream users={users} tracks={localTracks}/>}
+        <UserStream peers={peers} stream={stream}/>
           <div className="mainStream">
-            {streamReady &&  <MainStream/>}
+           <MainStream/>
           </div>
           <div className="options">
-             {ready && localTracks && (<Controls tracks={localTracks} setStart={setStart} setInCall={setInCall}/>)}
+             <Controls/>
           </div>
       </div>
       <div className="chatbox">
