@@ -34,8 +34,9 @@ const Controls = (props) => {
           :<i className="fa-solid fa-video-slash fa-2xl mx-2" style={{'color': '#ffffff'}}></i>}
       </button>
             <button className="btn mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-            <i className="fa-regular fa-message fa-2xl" style={{'color': '#ffffff'}}></i>
+            <i class="fa-solid fa-users-line fa-2xl" style={{'color': '#ffffff'}}></i>
 </button>
+<button className="btn mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">     <i className="fa-regular fa-message fa-2xl" style={{'color': '#ffffff'}}></i></button>
             <button className='btn btn-danger mx-2' onClick={()=>leaveChannel()}>Leave Meet</button>
     </div>
   )
