@@ -5,30 +5,23 @@
 .Streams{
     display:flex;
     flex-direction: column;
-    width: 75%;
+    width: 100%;
 }
 .userStreams{
-    height: 14%;
-    border: 2px solid orange;
+    height: 21%;
+    border: 2px solid #343a40;
     padding-left: 50px;
     padding-right: 31px;
     margin-bottom: 4px;
     margin-top: 8px;
 }
 .mainStream{
-    border: 2px solid orange;
-    height: 73%;
+    border: 2px solid #343a40;
+    height: 72%;
 }
 .options{
     height: 8%;
-    border: 2px solid green;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.chatbox{
-    width: 25%;
-    background-color: wheat;
-    border: 2px solid red;/*removing this border will cause div overflow*/
-    padding: 2px 2px;
 }

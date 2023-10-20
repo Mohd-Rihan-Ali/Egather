@@ -24,13 +24,20 @@ const MeetingRoom = (props) => {
           <div className="mainStream">
            <MainStream/>
           </div>
-          <div className="options">
+          <div className="options bg-dark">
              <Controls/>
           </div>
       </div>
-      <div className="chatbox">
-        <Chatbox/>
-      </div>
+
+<div className="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div className="offcanvas-header">
+    <h5 className="offcanvas-title text-light" id="offcanvasExampleLabel">Group Chat</h5>
+    <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div className="offcanvas-body">
+    <Chatbox/>
+  </div>
+</div>
     </div>
   )
 }

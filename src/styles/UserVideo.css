@@ -1,10 +1,15 @@
 .userVideo{
-    background-color: white;
+    /* background-color: white; */
     /* border: 2px solid red; */
     border-radius: 10px;
-    width: 100%;
-    height: 150px;
+    width:100%;
+    height: 100%;
     cursor: pointer;
+    /* object-fit: fill; */
+}
+.slick-slide div{
+  height: 100%;
+  width: 200px;
 }
 /* .options{
     position:absolute;

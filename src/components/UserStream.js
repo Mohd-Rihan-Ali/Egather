@@ -21,6 +21,7 @@ const {mainStream, setMainStream, setStreamReady} = mainStreamcontext;
     const settings = {
         infinite:false,
         dots: true,
+        variableWidth: true,
         slidesToShow: 4,
         slidesToScroll: 1,
         responsive: [

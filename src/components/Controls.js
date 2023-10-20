@@ -26,14 +26,17 @@ const Controls = (props) => {
   return (
     <div>
       <button className='btn' onClick={()=>mute("audio")}>
-      {trackState.audio?<i class="fa-solid fa-microphone fa-2xl mx-2" style={{'color': '#ffffff'}}></i>
-      :<i class="fa-solid fa-microphone-slash fa-2xl mx-2" style={{'color': '#ffffff'}}></i>}
+      {trackState.audio?<i className="fa-solid fa-microphone fa-2xl mx-2" style={{'color': '#ffffff'}}></i>
+      :<i className="fa-solid fa-microphone-slash fa-2xl mx-2" style={{'color': '#ffffff'}}></i>}
       </button>
       <button className='btn' onClick={()=>mute("video")}>
-          {trackState.video?<i class="fa-solid fa-video fa-2xl mx-2" style={{'color': '#ffffff'}}></i>
-          :<i class="fa-solid fa-video-slash fa-2xl mx-2" style={{'color': '#ffffff'}}></i>}
+          {trackState.video?<i className="fa-solid fa-video fa-2xl mx-2" style={{'color': '#ffffff'}}></i>
+          :<i className="fa-solid fa-video-slash fa-2xl mx-2" style={{'color': '#ffffff'}}></i>}
       </button>
-            <button className='btn btn-danger mx-3' onClick={()=>leaveChannel()}>Leave Meet</button>
+            <button className="btn mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <i className="fa-regular fa-message fa-2xl" style={{'color': '#ffffff'}}></i>
+</button>
+            <button className='btn btn-danger mx-2' onClick={()=>leaveChannel()}>Leave Meet</button>
     </div>
   )
 }

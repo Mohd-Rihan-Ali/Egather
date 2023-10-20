@@ -26,3 +26,7 @@ code {
 .backg-black{
   background-color: black;
 }
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
