@@ -25,7 +25,7 @@ const MeetingRoom = (props) => {
            <MainStream/>
           </div>
           <div className="options bg-dark">
-             <Controls/>
+             <Controls stream={stream}/>
           </div>
       </div>
 

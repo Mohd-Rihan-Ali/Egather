@@ -13,7 +13,7 @@ const UserVideo = (props) => {
          setMainStream(track1);
   }
   return (
-      <video className='userVideo' ref={videoRef} autoPlay muted onClick={()=>handleClick(stream)}/>
+      <video className='userVideo' ref={videoRef} autoPlay onClick={()=>handleClick(stream)}/>
   )
 }
 

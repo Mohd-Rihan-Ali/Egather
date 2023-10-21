@@ -1,12 +1,13 @@
-import React, { useContext, useState} from 'react'
+import React, { useCallback, useContext, useState} from 'react'
 import RoomContext from '../context/roomContext/roomContext';
 const CreateNewMeeting = () => {
     let [name, setName] = useState('');
     const { ws } = useContext(RoomContext);
-  const handleSubmit = (e)=>{
+  const handleSubmit = useCallback((e)=>{
     e.preventDefault();
+    console.log("iamrunning");
     ws.emit("create-room", {name});
-  }
+  }, [])
   return (
     <div className='container my-3 bg-dark text-light'>
       <form onSubmit={handleSubmit}>

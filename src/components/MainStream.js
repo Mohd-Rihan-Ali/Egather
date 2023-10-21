@@ -12,7 +12,7 @@ const MainStream = () => {
     if (videoRef.current) videoRef.current.srcObject = mainStream;
   }, [mainStream]);
   return (
-            <video  className="mainVideo" ref={videoRef} autoPlay muted />
+            <video  className="mainVideo" ref={videoRef} autoPlay/>
   )
 }
 

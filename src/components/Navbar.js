@@ -22,7 +22,6 @@ const Navbar = () => {
       {/* {!localStorage.getItem("token")? <form className="d-flex" role="search"> */}
         <Link className="btn btn-secondary mx-1 backg-black" to="/login" role="button">Login</Link>
         <Link className="btn btn-secondary mx-1 backg-black"  to="/signup" role="button">Signup</Link>
-        <Link className="btn btn-secondary mx-1 backg-black"  to="/meet" role="button">Meeting Room</Link>
         {/* </form>: <button className="btn btn-primary" onClick={handleLogout}>Logout</button>} */}
     </div>
   </div>

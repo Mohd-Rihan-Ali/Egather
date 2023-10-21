@@ -2,17 +2,18 @@ import React from 'react';
 import { useState } from 'react';
 
 const Controls = (props) => {
-
+  const {stream} = props;
   const [trackState, setTrackState] = useState({video:true, audio:true});
 
   const mute = async(type)=>{
       if(type==="audio"){
-
+        stream.getAudioTracks()[0].enabled = !trackState.audio;
         setTrackState((ps)=>{
           return {...ps, audio:!ps.audio};
         });
       }
       else if(type==="video"){
+        stream.getVideoTracks()[0].enabled = !trackState.video;
         setTrackState((ps)=>{
           return {...ps, video:!ps.video};
         });
