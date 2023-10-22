@@ -20,6 +20,7 @@ const RoomState = (props)=>{
   const [peers, dispatch] = useReducer(peersReducer, {}); // 'peers' is basically our state
   // for getting the media devices
   const [stream, setStream] = useState();
+  const [messages, setMessages] = useState([]);
 
   const enterRoom = ({ roomId }) => {
     navigate(`/meet/${roomId}`);
@@ -32,6 +33,14 @@ const RoomState = (props)=>{
   const removePeer = (peerId) => {
     dispatch(removePeerAction(peerId));
   };
+
+  const handleMessage = (message) =>{
+    console.log("following message received", message);
+      setMessages((ps)=>{
+        return [...ps, message];
+      }) 
+  };
+
   useEffect(() => {
     const meId = uuidV4();
 
@@ -53,6 +62,7 @@ const RoomState = (props)=>{
 
     ws.on("room-created", enterRoom);
     ws.on("get-users", getUsers);
+    ws.on('createMessage', handleMessage);
     ws.on("user-disconnected", removePeer);
   }, []);
 
@@ -93,7 +103,7 @@ const RoomState = (props)=>{
   console.log({ peers });
 
     return (
-      <RoomContext.Provider value={{ ws, me, stream, peers }}>
+      <RoomContext.Provider value={{ ws, me, stream, peers, messages, setMessages }}>
       {props.children}
     </RoomContext.Provider>
       )

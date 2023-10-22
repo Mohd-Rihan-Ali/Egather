@@ -1,0 +1,13 @@
+.chat{
+    width: 100%;
+    color: white;
+    padding: 6px;
+    background-color: black;
+}
+.username{
+    font-weight: bold;
+}
+.message{
+    color: rgb(186, 197, 197);
+    white-space: normal;
+}
