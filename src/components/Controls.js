@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
+import RoomContext from '../context/roomContext/roomContext';
+import { useNavigate } from 'react-router-dom';
 
 const Controls = (props) => {
   const {stream} = props;
   const [trackState, setTrackState] = useState({video:true, audio:true});
+  const { ws} = useContext(RoomContext);
+  const navigate = useNavigate();
 
   const mute = async(type)=>{
       if(type==="audio"){
@@ -21,7 +25,8 @@ const Controls = (props) => {
   }
 
   const leaveChannel = async ()=>{
-    
+     ws.emit("user-leaves");
+     navigate('/')
   }
 
   return (
@@ -35,7 +40,7 @@ const Controls = (props) => {
           :<i className="fa-solid fa-video-slash fa-2xl mx-2" style={{'color': '#ffffff'}}></i>}
       </button>
             <button className="btn mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-            <i class="fa-solid fa-users-line fa-2xl" style={{'color': '#ffffff'}}></i>
+            <i className="fa-solid fa-users-line fa-2xl" style={{'color': '#ffffff'}}></i>
 </button>
 <button className="btn mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">     <i className="fa-regular fa-message fa-2xl" style={{'color': '#ffffff'}}></i></button>
             <button className='btn btn-danger mx-2' onClick={()=>leaveChannel()}>Leave Meet</button>
