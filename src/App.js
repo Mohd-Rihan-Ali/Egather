@@ -19,8 +19,8 @@ import CreateNewMeeting from './components/CreateNewMeeting';
 function App() {
   return (
     <div className="App backg-black">
-        <MainStreamState>
      <BrowserRouter>
+        <MainStreamState>
      <RoomState>
       <Routes>
         <Route element={<WithNav/>}>
@@ -36,8 +36,8 @@ function App() {
         </Route>
       </Routes>
       </RoomState>
-    </BrowserRouter>
         </MainStreamState>
+    </BrowserRouter>
     </div>
   );
 }

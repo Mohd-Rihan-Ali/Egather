@@ -2,6 +2,7 @@ import {
   useEffect,
   useState,
   useReducer,
+  useContext,
 } from "react";
 import { useNavigate } from "react-router-dom";
 import socketIOClient from "socket.io-client";
@@ -10,6 +11,7 @@ import { v4 as uuidV4 } from "uuid";
 import { peersReducer } from "./peerReducer";
 import { addPeerAction, removePeerAction } from "./peerActions";
 import RoomContext from "./roomContext";
+import MainStreamContext from "../mainStreamContext/mainStreamContext";
 
 const WS = "http://localhost:8000";
 const ws = socketIOClient(WS);
@@ -20,7 +22,11 @@ const RoomState = (props)=>{
   const [peers, dispatch] = useReducer(peersReducer, {}); // 'peers' is basically our state
   // for getting the media devices
   const [stream, setStream] = useState();
+  const mainStreamcontext = useContext(MainStreamContext);
+  const {setMainStream, setStreamReady} = mainStreamcontext;
   const [messages, setMessages] = useState([]);
+  const [roomId, setRoomId] = useState("");
+  const [screenSharingId, setScreenSharingId] = useState("")
 
   const enterRoom = ({ roomId }) => {
     navigate(`/meet/${roomId}`);
@@ -40,6 +46,21 @@ const RoomState = (props)=>{
         return [...ps, message];
       }) 
   };
+
+  const switchStream = (stream) =>{
+    setStream(stream)
+    setScreenSharingId(me?.id || "");
+    Object.values(me?.connections).forEach((connection)=>{
+      const videoTrack = stream?.getTracks().find(track => track.kind === 'video')
+      connection[0].peerConnection.getSenders()[1].replaceTrack(videoTrack).catch(err=>{console.log(err)})
+})
+  }
+  const shareScreen = () =>{
+    if(screenSharingId){
+          navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(switchStream)
+    }
+    else navigator.mediaDevices.getDisplayMedia({}).then(switchStream);
+  }
 
   useEffect(() => {
     const meId = uuidV4();
@@ -64,7 +85,32 @@ const RoomState = (props)=>{
     ws.on("get-users", getUsers);
     ws.on('createMessage', handleMessage);
     ws.on("user-disconnected", removePeer);
+    ws.on("user-shared-screen", (peerId) => setScreenSharingId(peerId));
+    ws.on("user-stopped-sharing", ()=>setScreenSharingId(""));
+
+    return ()=>{         
+    ws.off("room-created", enterRoom);
+    ws.off("get-users", getUsers);
+    ws.off('createMessage', handleMessage);
+    ws.off("user-disconnected", removePeer);
+    ws.off("user-shared-screen", (peerId) => setScreenSharingId(peerId));
+    ws.off("user-stopped-sharing", ()=>setScreenSharingId(""));
+    }
   }, []);
+
+  useEffect(()=>{
+   if (screenSharingId){
+    ws.emit("start-sharing", {peerId: screenSharingId, roomId});
+    const screenSharingVideo = screenSharingId === me?.id ? stream : peers[screenSharingId]?.stream;
+    setMainStream(screenSharingVideo);
+    setStreamReady(true);
+   }
+   else{
+        ws.emit("stop-sharing", roomId);
+        setMainStream(stream);
+        setStreamReady(true);
+    }
+  }, [screenSharingId])
 
   // for checking and getting the user and it's media stream
   useEffect(() => {
@@ -103,7 +149,7 @@ const RoomState = (props)=>{
   console.log({ peers });
 
     return (
-      <RoomContext.Provider value={{ ws, me, stream, peers, messages, setMessages }}>
+      <RoomContext.Provider value={{ ws, me, stream, peers, messages, setMessages,shareScreen, screenSharingId, setRoomId}}>
       {props.children}
     </RoomContext.Provider>
       )

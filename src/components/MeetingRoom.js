@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 
 const MeetingRoom = (props) => {
   const { roomId } = useParams();
-  const { ws, me, stream, peers } = useContext(RoomContext);
+  const { ws, me, stream, peers , setRoomId} = useContext(RoomContext);
 
   useEffect(() => {
     if (me){
@@ -17,6 +17,10 @@ const MeetingRoom = (props) => {
       ws.emit("join-room", { roomId: roomId, peerId: me._id });
     }
   }, [roomId, me, ws]);
+
+  useEffect(()=>{
+       setRoomId(roomId)
+  }, [roomId, setRoomId])
   return (
     <div className='Room'>
       <div className="Streams">
