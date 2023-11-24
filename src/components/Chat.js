@@ -1,10 +1,10 @@
 import React from 'react'
 import '../styles/Chat.css';
-const Chat = ({chat}) => {
+const Chat = ({chat, name}) => {
      
   return (
     <div className='chat'>
-      <div className='username'>User</div>
+      <div className='username'>{name}</div>
            <div className="message">{chat}</div>
     </div>
   )

@@ -45,10 +45,10 @@ const RoomState = (props)=>{
     dispatch(removePeerAction(peerId));
   };
 
-  const handleMessage = (message) =>{
+  const handleMessage = ({userName, message}) =>{
     console.log("following message received", message);
       setMessages((ps)=>{
-        return [...ps, message];
+        return [...ps, {name:userName, message}];
       }) 
   };
 

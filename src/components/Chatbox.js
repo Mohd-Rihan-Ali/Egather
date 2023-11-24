@@ -3,14 +3,14 @@ import '../styles/Chatbox.css'
 import RoomContext from '../context/roomContext/roomContext';
 import Chat from './Chat';
 const Chatbox = () => {
-  const { ws , messages, setMessages} = useContext(RoomContext);
+  const { ws , messages, setMessages,userName} = useContext(RoomContext);
   const [message, setMessage] = useState("");
   const handleSendMessage = ()=>{
       console.log(message)
       setMessages((ps)=>{
-            return [...ps, message];
+            return [...ps, {name:userName, message}];
       })
-       ws.emit('message', message);
+       ws.emit('message', {userName, message});
        setMessage('')
   }
   return (
@@ -18,7 +18,7 @@ const Chatbox = () => {
     <div className="chats">
       { 
         messages.map((m) => {
-          return <Chat chat={m}/>
+          return <Chat chat={m.message} name={m.name}/>
          })
        }
     </div>
