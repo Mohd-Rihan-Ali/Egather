@@ -3,7 +3,7 @@ export const REMOVE_PEER = "REMOVE_PEER";
 
 export const addPeerAction = (peerId, stream) => ({
   type: ADD_PEER,
-  payload: { peerId, stream },
+  payload: {peerId, stream },
 });
 
 export const removePeerAction = (peerId) => ({

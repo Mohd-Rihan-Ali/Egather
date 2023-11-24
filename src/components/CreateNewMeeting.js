@@ -6,14 +6,15 @@ const CreateNewMeeting = () => {
   const handleSubmit = useCallback((e)=>{
     e.preventDefault();
     console.log("iamrunning");
+    console.log(name);
     ws.emit("create-room", {name});
-  }, [])
+  }, [name])
   return (
     <div className='container my-3 bg-dark text-light'>
       <form onSubmit={handleSubmit}>
   <div className="mb-3">
     <label htmlFor="name" className="form-label">Name</label>
-    <input type="text" className="form-control" id="name" value={name} onChange={(e)=>{setName(e.target.value)}}/>
+    <input type="text" className="form-control" id="name" value={name} onChange={(e)=>{setName(e.target.value);console.log(name)}}/>
   </div>
   <button type="submit" className="btn btn-secondary mb-2 mx-2 backg-black">Create</button>
 </form>

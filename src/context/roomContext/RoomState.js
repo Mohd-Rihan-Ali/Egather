@@ -19,7 +19,9 @@ const ws = socketIOClient(WS);
 const RoomState = (props)=>{
   const navigate = useNavigate();
   const [me, setMe] = useState(); // for setting up the peer id
+  const [userName, setUserName] = useState();// storing the name of user
   const [peers, dispatch] = useReducer(peersReducer, {}); // 'peers' is basically our state
+  const [users, setUsers] = useState([]); // it can be use to get the names of the joined users
   // for getting the media devices
   const [stream, setStream] = useState();
   const mainStreamcontext = useContext(MainStreamContext);
@@ -28,12 +30,15 @@ const RoomState = (props)=>{
   const [roomId, setRoomId] = useState("");
   const [screenSharingId, setScreenSharingId] = useState("")
 
-  const enterRoom = ({ roomId }) => {
+  const enterRoom = ({name, roomId }) => {
+    setUserName(name);
+    console.log(name)
     navigate(`/meet/${roomId}`);
     console.log(roomId);
   };
   const getUsers = ({ participants }) => {
-    console.log(participants);
+    console.log("these are participants", participants);
+    setUsers(participants);
   };
 
   const removePeer = (peerId) => {
@@ -81,7 +86,7 @@ const RoomState = (props)=>{
       console.log(error);
     }
 
-    ws.on("room-created", enterRoom);
+    ws.on("enter-room", enterRoom);
     ws.on("get-users", getUsers);
     ws.on('createMessage', handleMessage);
     ws.on("user-disconnected", removePeer);
@@ -89,7 +94,7 @@ const RoomState = (props)=>{
     ws.on("user-stopped-sharing", ()=>setScreenSharingId(""));
 
     return ()=>{         
-    ws.off("room-created", enterRoom);
+    ws.off("enter-room", enterRoom);
     ws.off("get-users", getUsers);
     ws.off('createMessage', handleMessage);
     ws.off("user-disconnected", removePeer);
@@ -98,6 +103,7 @@ const RoomState = (props)=>{
     }
   }, []);
 
+  // use effect to handle screen sharing
   useEffect(()=>{
    if (screenSharingId){
     ws.emit("start-sharing", {peerId: screenSharingId, roomId});
@@ -149,7 +155,7 @@ const RoomState = (props)=>{
   console.log({ peers });
 
     return (
-      <RoomContext.Provider value={{ ws, me, stream, peers, messages, setMessages,shareScreen, screenSharingId, setRoomId}}>
+      <RoomContext.Provider value={{ ws, me, stream, peers, messages, setMessages,shareScreen, screenSharingId, setRoomId, userName, users}}>
       {props.children}
     </RoomContext.Provider>
       )

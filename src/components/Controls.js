@@ -46,7 +46,7 @@ const Controls = (props) => {
            <div>Participants</div> 
 </button>
 <button className='btn mx-2 text-white' onClick={shareScreen}>
-<i class="fa-solid fa-display fa-xl" style={{'color': '#ffffff'}}></i>
+<i className="fa-solid fa-display fa-xl" style={{'color': '#ffffff'}}></i>
 <div>Share Screen</div>
 </button>
 <button className="btn mx-2 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">     <i className="fa-regular fa-message fa-xl" style={{'color': '#ffffff'}}></i>

@@ -6,15 +6,16 @@ import Chatbox from './Chatbox';
 import RoomContext from '../context/roomContext/roomContext';
 import Controls from './Controls';
 import { useParams } from 'react-router-dom';
+import Participants from './Participants';
 
 const MeetingRoom = (props) => {
   const { roomId } = useParams();
-  const { ws, me, stream, peers , setRoomId} = useContext(RoomContext);
+  const { ws, me, stream, peers , setRoomId, userName} = useContext(RoomContext);
 
   useEffect(() => {
     if (me){
-      console.log("i emitting join-room", roomId)
-      ws.emit("join-room", { roomId: roomId, peerId: me._id });
+      console.log("i emitting join-room", roomId, userName)
+      ws.emit("join-room", { roomId: roomId, peerId: me._id , name:userName});
     }
   }, [roomId, me, ws]);
 
@@ -50,7 +51,7 @@ const MeetingRoom = (props) => {
     <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div className="offcanvas-body">
-   ...
+   <Participants/>
   </div>
 </div>
     </div>

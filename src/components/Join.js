@@ -11,10 +11,7 @@ function Join() {
 
   const handleSubmit = (e)=>{
     e.preventDefault();
-     ws.emit("someone-trying-to-join-room", { roomId });
-    ws.on("valid-roomId",()=>{
-        navigate(`/meet/${roomId}`);
-    });
+     ws.emit("someone-trying-to-join-room", { name, roomId});
     ws.on("invalid-roomId",()=>{
         console.log("invalid-roomId");
     })
