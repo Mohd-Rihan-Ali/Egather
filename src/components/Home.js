@@ -1,6 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 const Home = () => {
+  let navigate = useNavigate();
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      console.log(localStorage.getItem("token"))
+    }
+    else{
+      navigate("/login")
+    }
+    // eslint-disable-next-line
+  }, [])
   return (
     <div className="container card text-center my-3 bg-dark text-light">
   <div className="card-body">

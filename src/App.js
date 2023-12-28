@@ -16,6 +16,7 @@ import MeetingRoom from './components/MeetingRoom';
 import RoomState from './context/roomContext/RoomState';
 import MainStreamState from './context/mainStreamContext/MainStreamState';
 import CreateNewMeeting from './components/CreateNewMeeting';
+import OtpVerification from './components/OtpVerification';
 function App() {
   return (
     <div className="App backg-black">
@@ -30,6 +31,7 @@ function App() {
         <Route path="/join" element={<Join/>}/>
         <Route path="/createRoom" element={<CreateNewMeeting/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/otp-verification" element={<OtpVerification/>}/>
         </Route>
         <Route element={<WithoutNav/>}>
         <Route path="/meet/:roomId" element={<MeetingRoom/>}/>         
