@@ -20,7 +20,7 @@ In addition to the robust security measures, we are committed to enhancing the v
 - **Real-time Video and Audio Communication:** Facilitate live virtual classroom sessions with high-quality video and audio.
 - **Screen Sharing:** Share screens for presentations and educational content.
 - **Chat Functionality:** Enable interactive discussions through a chat feature during sessions.
-- **User-Friendly Design:** Prioritize an intuitive and user-friendly interface for students and faculty.
+- **UserFriendly Design:** Prioritize an intuitive and user-friendly interface for students and faculty.
 
 ## Getting Started
 
